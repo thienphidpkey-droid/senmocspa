@@ -3,82 +3,153 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NeonGlide - Giày Patin Chính Hãng</title>
+    <title>Sen Mộc Spa - Gội Đầu Dưỡng Sinh & Massage Trị Liệu Thảo Dược</title>
+    <meta name="description" content="Sen Mộc Spa chuyên cung cấp dịch vụ massage body đá nóng, trị liệu cổ vai gáy và gội đầu dưỡng sinh thảo dược thiên nhiên. Đội ngũ kỹ thuật viên giàu kinh nghiệm, không gian thư giãn đẳng cấp tại TP.HCM.">
+    <meta name="keywords" content="spa uy tín tphcm, gội đầu dưỡng sinh, massage body, trị liệu cổ vai gáy, spa thảo dược, sen mộc spa">
+    <meta name="author" content="Sen Mộc Spa & Wellness">
     
-    <!-- Tailwind CSS with Custom Config -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://senmocspa.vn/">
+    <meta property="og:title" content="Sen Mộc Spa - Nơi Tìm Về Sự Bình Yên">
+    <meta property="og:description" content="Trải nghiệm liệu trình thư giãn chuyên sâu với thảo dược tự nhiên. Đặt lịch ngay để nhận ưu đãi.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1540555700478-4be289fbecef">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://senmocspa.vn/">
+    <meta property="twitter:title" content="Sen Mộc Spa - Massage & Dưỡng Sinh">
+    <meta property="twitter:description" content="Không gian spa xanh mát, liệu trình chuyên nghiệp giúp tái tạo năng lượng.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1540555700478-4be289fbecef">
+
+    <link rel="canonical" href="https://senmocspa.vn/" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema Markup for Local Business (EEAT Signal) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "DaySpa",
+      "name": "Sen Mộc Spa & Wellness",
+      "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef",
+      "@id": "https://senmocspa.vn",
+      "url": "https://senmocspa.vn",
+      "telephone": "+84912345678",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Đường Thảo Điền",
+        "addressLocality": "Quận 2",
+        "addressRegion": "Thành phố Hồ Chí Minh",
+        "postalCode": "700000",
+        "addressCountry": "VN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 10.8000,
+        "longitude": 106.7333
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+         {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "21:00"
+        }
+      ]
+    }
+    </script>
+
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: {
-              sans: ['-apple-system', 'BlinkMacSystemFont', '"San Francisco"', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-              display: ['-apple-system', 'BlinkMacSystemFont', '"San Francisco"', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-            },
             colors: {
-              primary: {
-                DEFAULT: '#0284c7', // Sky 600
-                dark: '#0369a1',    // Sky 700
-                light: '#e0f2fe',   // Sky 100
-              },
-              secondary: '#f97316', // Orange 500
-              dark: '#1e293b',      // Slate 800
-              light: '#f8fafc',     // Slate 50
-              gray: {
-                100: '#f1f5f9',
-                200: '#e2e8f0',
-                500: '#64748b',
-                800: '#1e293b'
-              }
+              'spa-brown': '#3E2B26', /* Darker, richer brown */
+              'spa-milk': '#EBE0D5',  /* Darker beige (Latte/Sand tone) */
+              'spa-green': '#5D7563', /* Keeping the muted green */
+              'spa-green-dark': '#3D5242',
+              'spa-gold': '#C5A02F',
+              'spa-white': '#FFFFFF',
             },
-            boxShadow: {
-              'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-              'card': '0 0 0 1px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
-              'hover': '0 0 0 1px rgba(2, 132, 199, 0.2), 0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', 'serif'],
+              sans: ['"Lato"', 'sans-serif'],
+            },
+            fontSize: {
+              'base': ['1.125rem', { lineHeight: '1.75rem' }], /* Increase base size to 18px */
+              'lg': ['1.25rem', { lineHeight: '1.75rem' }],
+              'xl': ['1.5rem', { lineHeight: '2rem' }],
             },
             animation: {
-              'fade-in': 'fadeIn 0.5s ease-out',
+              'fade-in-down': 'fadeInDown 0.5s ease-out',
+              'fade-in-up': 'fadeInUp 0.5s ease-out',
             },
             keyframes: {
-              fadeIn: {
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInUp: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
+              },
             }
           }
         }
       }
     </script>
-
-    <!-- Global Styles -->
     <style>
       body {
-        background-color: #f8fafc;
-        color: #1e293b;
-        overflow-x: hidden;
+        background-color: #EBE0D5;
+        color: #3E2B26;
       }
-      
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f5f9; }
-      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+      /* Custom scrollbar for webkit */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #EBE0D5; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3E2B26; 
+        border-radius: 0px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #5D7563; 
+      }
     </style>
-    
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://aistudiocdn.com/react@^19.2.0",
-        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-        "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
-        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-        "react/": "https://aistudiocdn.com/react@^19.2.0/"
-      }
-    }
-    </script>
-  <link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
