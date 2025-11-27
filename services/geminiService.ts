@@ -1,46 +1,63 @@
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
-
-const SYSTEM_INSTRUCTION = `
-Bạn là chuyên gia tư vấn sức khỏe và sắc đẹp ảo của Sen Mộc Spa.
-Tông giọng của bạn: Nhẹ nhàng, lịch sự, chuyên nghiệp, quan tâm và tinh tế.
-Nhiệm vụ: Tư vấn các liệu trình spa dựa trên vấn đề của khách hàng (ví dụ: đau lưng, da khô, mất ngủ).
-
-Danh sách dịch vụ của Spa để bạn tham khảo:
-1. Trị liệu Cổ Vai Gáy (Giảm đau nhức văn phòng)
-2. Massage Body Đá Nóng (Thư giãn sâu, thải độc)
-3. Chăm sóc da mặt Sen Mộc (Cấp ẩm, trẻ hóa da)
-4. Gội đầu dưỡng sinh thảo dược (Giảm stress, mượt tóc)
-5. Tắm trắng phi thuyền (Sáng da an toàn)
-
-Hãy đưa ra lời khuyên ngắn gọn (dưới 100 từ) và luôn hướng khách hàng đến việc đặt lịch để trải nghiệm.
-Nếu khách hàng hỏi ngoài lề, hãy khéo léo quay lại chủ đề sức khỏe và làm đẹp.
-`;
-
-export const sendMessageToGemini = async (message: string, history: { role: string; parts: { text: string }[] }[]): Promise<string> => {
-  if (!apiKey) {
-    return "Hệ thống tư vấn đang bảo trì. Vui lòng liên hệ hotline để được hỗ trợ ngay lập tức.";
-  }
-
+export const generateProductSeo = async (productName: string, category: string): Promise<{ title: string; description: string; tags: string[]; schema: any }> => {
   try {
-    const chat = ai.chats.create({
-      model: 'gemini-2.5-flash',
+    // Initialize inside the function and safely access process.env
+    // This prevents "ReferenceError: process is not defined" in some browser environments
+    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+    
+    if (!apiKey) {
+        console.warn("API Key not found. Skipping AI generation.");
+        throw new Error("Missing API Key");
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    const model = 'gemini-2.5-flash';
+    const prompt = `
+      Act as a Technical SEO Expert for "NeonGlide", a premier Roller Skating Shop.
+      Generate SEO metadata and JSON-LD Schema for a product.
+      
+      Product: "${productName}"
+      Category: "${category}"
+      Brand: "NeonGlide"
+      
+      Requirements:
+      1. Title: Compelling, keyword-rich, max 60 chars.
+      2. Description: Action-oriented, highlights USP, max 160 chars.
+      3. Tags: 5-8 relevant semantic keywords.
+      4. Schema: Valid JSON-LD Schema.org 'Product' object (include name, brand, category).
+      
+      Output strictly in JSON format. Keys: "title", "description", "tags", "schema".
+    `;
+
+    const response = await ai.models.generateContent({
+      model: model,
+      contents: prompt,
       config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
-        temperature: 0.7,
-      },
-      history: history,
+        responseMimeType: "application/json",
+      }
     });
 
-    const response: GenerateContentResponse = await chat.sendMessage({
-      message: message,
-    });
-
-    return response.text || "Xin lỗi, tôi chưa hiểu rõ ý bạn. Bạn có thể mô tả kỹ hơn về tình trạng sức khỏe của mình không?";
+    const text = response.text;
+    if (!text) throw new Error("Empty response from AI");
+    
+    return JSON.parse(text);
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "Hiện tại tôi đang gặp chút sự cố kết nối. Bạn vui lòng thử lại sau giây lát nhé.";
+    console.error("Gemini SEO Generation Error:", error);
+    // Fallback content
+    return {
+      title: `${productName} - Chính Hãng | NeonGlide`,
+      description: `Mua ${productName} chất lượng cao tại NeonGlide. Chuyên giày patin ${category} uy tín, giá tốt.`,
+      tags: ["patin", category, productName, "neonglide", "giày trượt"],
+      schema: {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": productName,
+        "brand": {
+          "@type": "Brand",
+          "name": "NeonGlide"
+        }
+      }
+    };
   }
 };
