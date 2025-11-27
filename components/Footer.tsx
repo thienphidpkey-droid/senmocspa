@@ -1,17 +1,20 @@
 import React from 'react';
 import { Flower2, MapPin, Phone, Mail, Facebook, Instagram } from 'lucide-react';
+import { useNavigation } from '../contexts/NavigationContext';
 
 export const Footer: React.FC = () => {
+  const { navigateTo } = useNavigation();
+
   return (
     <footer className="bg-[#2a1d19] text-spa-milk pt-20 pb-10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-16">
           {/* Brand */}
           <div className="space-y-6">
-            <a href="#" className="flex items-center space-x-3 text-spa-milk group">
+            <button onClick={() => navigateTo('home')} className="flex items-center space-x-3 text-spa-milk group hover:opacity-80 transition-opacity">
               <Flower2 className="w-10 h-10" />
               <span className="text-3xl font-serif font-bold tracking-wide">Sen Mộc</span>
-            </a>
+            </button>
             <p className="text-spa-milk/80 text-lg leading-relaxed font-light max-w-sm">
               Nơi nuôi dưỡng vẻ đẹp tự nhiên và mang lại sự cân bằng cho tâm hồn. 
             </p>
@@ -22,10 +25,10 @@ export const Footer: React.FC = () => {
             <h4 className="font-serif font-bold text-2xl mb-8 text-white">Liên Kết</h4>
             <nav>
               <ul className="space-y-4 text-spa-milk/80 text-lg">
-                <li><a href="#" className="hover:text-white transition-colors">Trang chủ</a></li>
-                <li><a href="#about" className="hover:text-white transition-colors">Về chúng tôi</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Dịch vụ</a></li>
-                <li><a href="#booking" className="hover:text-white transition-colors">Đặt lịch</a></li>
+                <li><button onClick={() => navigateTo('home')} className="hover:text-white transition-colors">Trang chủ</button></li>
+                <li><button onClick={() => navigateTo('about')} className="hover:text-white transition-colors">Về chúng tôi</button></li>
+                <li><button onClick={() => navigateTo('services')} className="hover:text-white transition-colors">Dịch vụ</button></li>
+                <li><button onClick={() => navigateTo('booking')} className="hover:text-white transition-colors">Đặt lịch</button></li>
               </ul>
             </nav>
           </div>

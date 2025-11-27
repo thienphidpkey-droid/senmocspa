@@ -34,25 +34,42 @@ const services: ServiceItem[] = [
     duration: '75 phút',
     imageUrl: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop',
   },
+  {
+    id: '5',
+    title: 'Ngâm Chân Thảo Dược',
+    description: 'Bài thuốc cổ truyền giúp lưu thông khí huyết, giảm tê bì chân tay.',
+    price: '100.000 VNĐ',
+    duration: '30 phút',
+    imageUrl: 'https://images.unsplash.com/photo-1519823551278-64ac927ac4ac?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    id: '6',
+    title: 'Tắm Trắng Phi Thuyền',
+    description: 'Công nghệ ánh sáng sinh học kết hợp dưỡng chất thiên nhiên giúp da sáng hồng.',
+    price: '800.000 VNĐ',
+    duration: '90 phút',
+    imageUrl: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=800&auto=format&fit=crop',
+  }
 ];
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-24 bg-spa-white">
+    <section className="pt-32 pb-24 bg-spa-white min-h-screen">
       <div className="container mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-spa-brown font-sans uppercase tracking-widest text-base mb-3 font-bold">Dịch Vụ Nổi Bật</h2>
-          <h3 className="text-5xl font-serif text-spa-brown font-bold">Thư Giãn & Trị Liệu</h3>
+        <div className="mb-16 text-center">
+          <h2 className="text-spa-brown font-sans uppercase tracking-widest text-base mb-3 font-bold">Danh Sách Dịch Vụ</h2>
+          <h3 className="text-5xl font-serif text-spa-brown font-bold mb-4">Thư Giãn & Trị Liệu</h3>
+          <div className="w-24 h-1 bg-spa-brown mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service) => (
             <article key={service.id} className="group flex flex-col h-full bg-spa-milk hover:bg-spa-brown transition-colors duration-500">
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-72 overflow-hidden">
                 <img
                   src={service.imageUrl}
                   alt={`Dịch vụ ${service.title}`}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
                   loading="lazy"
                 />
               </div>

@@ -21,7 +21,7 @@ export const BookingForm: React.FC = () => {
   };
 
   return (
-    <section id="booking" className="py-24 bg-spa-brown text-spa-milk">
+    <section className="pt-32 pb-24 bg-spa-brown text-spa-milk min-h-screen flex items-center">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Information */}
@@ -33,10 +33,11 @@ export const BookingForm: React.FC = () => {
             </p>
             <div className="border-t border-spa-milk/20 pt-8">
                <p className="text-2xl font-serif font-bold">Hotline: 0912 345 678</p>
+               <p className="text-lg mt-2 opacity-80">123 Đường Thảo Điền, Quận 2, TP.HCM</p>
             </div>
           </div>
 
-          {/* Form - Simpler Design */}
+          {/* Form */}
           <div className="w-full lg:w-2/3 bg-spa-milk text-spa-brown p-8 md:p-12 rounded-none shadow-none">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -76,6 +77,7 @@ export const BookingForm: React.FC = () => {
                   <option value="hair">Gội Đầu Dưỡng Sinh</option>
                   <option value="neck">Trị Liệu Cổ Vai Gáy</option>
                   <option value="face">Chăm Sóc Da Mặt</option>
+                  <option value="bath">Tắm Trắng Phi Thuyền</option>
                 </select>
               </div>
 

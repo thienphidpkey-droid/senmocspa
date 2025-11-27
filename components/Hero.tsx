@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useNavigation } from '../contexts/NavigationContext';
 
 export const Hero: React.FC = () => {
+  const { navigateTo } = useNavigation();
+
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -28,8 +31,8 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-spa-milk"></div>
       </div>
 
-      {/* Content - Simplifed & Larger */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-20">
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-20 animate-fade-in-up">
         <span className="block text-spa-white font-sans text-lg uppercase tracking-[0.3em] mb-6 font-bold drop-shadow-md">
           Chữa lành Thân - Tâm - Trí
         </span>
@@ -44,21 +47,21 @@ export const Hero: React.FC = () => {
         </p>
         
         <div className="flex flex-col md:flex-row justify-center gap-6">
-          <a
-            href="#booking"
+          <button
+            onClick={() => navigateTo('booking')}
             className="group bg-spa-brown hover:bg-spa-brown/90 text-white px-10 py-4 rounded-none transition-all duration-300 flex items-center justify-center gap-3 text-lg font-bold tracking-wide border border-spa-brown shadow-lg"
             aria-label="Đặt lịch ngay tại Sen Mộc Spa"
           >
             Đặt Lịch Ngay
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href="#services"
+          </button>
+          <button
+            onClick={() => navigateTo('services')}
             className="bg-transparent hover:bg-spa-white hover:text-spa-brown text-spa-white border border-spa-white px-10 py-4 rounded-none transition-all duration-300 text-lg font-bold tracking-wide shadow-sm"
             aria-label="Xem chi tiết các dịch vụ"
           >
             Xem Dịch Vụ
-          </a>
+          </button>
         </div>
       </div>
     </section>

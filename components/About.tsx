@@ -3,10 +3,15 @@ import { Leaf, Droplets, Heart, Award } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 bg-spa-milk">
+    <section className="pt-32 pb-24 bg-spa-milk min-h-screen">
       <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-serif text-spa-brown font-bold mb-4">Câu Chuyện Của Chúng Tôi</h1>
+          <div className="w-24 h-1 bg-spa-brown mx-auto"></div>
+        </div>
+
         <div className="flex flex-col md:flex-row items-center gap-16">
-          {/* Image Grid - Simplified shapes */}
+          {/* Image Grid */}
           <div className="w-full md:w-1/2 grid grid-cols-2 gap-6">
             <img
               src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=800&auto=format&fit=crop"
@@ -22,17 +27,17 @@ export const About: React.FC = () => {
             />
           </div>
 
-          {/* Text Content - Larger Fonts */}
+          {/* Text Content */}
           <div className="w-full md:w-1/2">
             <h2 className="text-spa-brown font-sans uppercase tracking-widest text-base mb-4 font-bold border-l-4 border-spa-brown pl-4">Về Sen Mộc Spa</h2>
-            <h3 className="text-5xl font-serif text-spa-brown mb-8 font-bold leading-tight">Tinh Hoa Thảo Mộc <br/> Chuyên Gia Trị Liệu</h3>
+            <h3 className="text-4xl lg:text-5xl font-serif text-spa-brown mb-8 font-bold leading-tight">Tinh Hoa Thảo Mộc <br/> Chuyên Gia Trị Liệu</h3>
             
             <div className="space-y-6 text-xl text-gray-700">
               <p className="leading-relaxed">
-                Với hơn <strong className="text-spa-brown">5 năm kinh nghiệm</strong>, Sen Mộc Spa mang đến sự kết hợp hoàn hảo giữa y học cổ truyền và không gian thiền tịnh.
+                Với hơn <strong className="text-spa-brown">5 năm kinh nghiệm</strong>, Sen Mộc Spa mang đến sự kết hợp hoàn hảo giữa y học cổ truyền và không gian thiền tịnh. Chúng tôi tin rằng vẻ đẹp thực sự bắt nguồn từ một cơ thể khỏe mạnh và một tâm hồn an yên.
               </p>
               <p className="leading-relaxed">
-                Đội ngũ kỹ thuật viên được <strong className="text-spa-brown">đào tạo bài bản</strong>, sử dụng 100% thảo dược tự nhiên lành tính.
+                Đội ngũ kỹ thuật viên được <strong className="text-spa-brown">đào tạo bài bản</strong>, sử dụng 100% thảo dược tự nhiên lành tính, cam kết mang lại hiệu quả trị liệu cao nhất cho khách hàng.
               </p>
             </div>
 

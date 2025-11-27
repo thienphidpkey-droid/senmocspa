@@ -6,20 +6,45 @@ import { Services } from './components/Services';
 import { BookingForm } from './components/BookingForm';
 import { Footer } from './components/Footer';
 import { AIConsultant } from './components/AIConsultant';
+import { NavigationProvider, useNavigation } from './contexts/NavigationContext';
+
+const MainContent: React.FC = () => {
+  const { currentPage } = useNavigation();
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Hero />;
+      case 'about':
+        return <About />;
+      case 'services':
+        return <Services />;
+      case 'booking':
+        return <BookingForm />;
+      default:
+        return <Hero />;
+    }
+  };
+
+  return (
+    <main className="animate-fade-in-down">
+      {renderPage()}
+    </main>
+  );
+};
 
 function App() {
   return (
-    <div className="min-h-screen bg-spa-milk text-gray-800 font-sans selection:bg-spa-green selection:text-white scroll-smooth">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <BookingForm />
-      </main>
-      <Footer />
-      <AIConsultant />
-    </div>
+    <NavigationProvider>
+      <div className="min-h-screen bg-spa-milk text-gray-800 font-sans selection:bg-spa-green selection:text-white scroll-smooth flex flex-col">
+        <Header />
+        <div className="flex-grow">
+          <MainContent />
+        </div>
+        <Footer />
+        <AIConsultant />
+      </div>
+    </NavigationProvider>
   );
 }
 
