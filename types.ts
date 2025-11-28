@@ -5,6 +5,11 @@ export interface ServiceItem {
   price: string;
   duration: string;
   imageUrl: string;
+  // Detailed fields for popup
+  fullDescription?: string;
+  ingredients?: string[];
+  steps?: string[];
+  benefits?: string;
 }
 
 export interface ChatMessage {

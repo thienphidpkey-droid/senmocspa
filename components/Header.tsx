@@ -27,8 +27,13 @@ export const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // Ensure header background is solid on subpages or when scrolled
-  const isTransparent = currentPage === 'home' && !isScrolled;
+  // Header trong suốt khi: Ở trang chủ + Chưa cuộn + Chưa mở menu mobile
+  const isTransparent = currentPage === 'home' && !isScrolled && !isMobileMenuOpen;
+
+  // Logic màu sắc: Nền trong suốt thì chữ Trắng, Nền đặc thì chữ Nâu
+  const textColorClass = isTransparent ? 'text-spa-white' : 'text-spa-brown';
+  const hoverColorClass = isTransparent ? 'hover:text-spa-milk' : 'hover:text-spa-green';
+  const borderColorClass = isTransparent ? 'border-spa-white' : 'border-spa-brown';
 
   return (
     <header
@@ -40,11 +45,11 @@ export const Header: React.FC = () => {
         {/* Logo */}
         <button 
           onClick={() => navigateTo('home')} 
-          className="flex items-center space-x-3 text-spa-brown group hover:opacity-80 transition-opacity" 
+          className={`flex items-center space-x-3 group hover:opacity-80 transition-opacity ${textColorClass}`} 
           aria-label="Trang chủ Sen Mộc Spa"
         >
-          <Flower2 className={`w-10 h-10 transition-colors duration-300 ${!isTransparent ? 'text-spa-brown' : 'text-spa-brown group-hover:text-spa-white'}`} />
-          <span className={`text-3xl font-serif font-bold tracking-wide transition-colors duration-300 ${!isTransparent ? 'text-spa-brown' : 'text-spa-brown group-hover:text-spa-white'}`}>
+          <Flower2 className={`w-10 h-10 transition-colors duration-300 ${textColorClass}`} />
+          <span className={`text-3xl font-serif font-bold tracking-wide transition-colors duration-300 ${textColorClass}`}>
             Sen Mộc
           </span>
         </button>
@@ -57,9 +62,9 @@ export const Header: React.FC = () => {
               onClick={() => handleNavClick(link.page)}
               className={`font-sans text-base uppercase tracking-widest transition-colors font-bold border-b-2 ${
                 currentPage === link.page
-                  ? 'border-spa-brown text-spa-brown'
-                  : 'border-transparent hover:text-spa-white hover:border-spa-white'
-              } ${!isTransparent ? 'text-spa-brown' : 'text-spa-brown'}`}
+                  ? `${borderColorClass} ${textColorClass}`
+                  : `border-transparent ${hoverColorClass} ${textColorClass}`
+              }`}
             >
               {link.name}
             </button>
@@ -68,7 +73,7 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-spa-brown p-2"
+          className={`md:hidden p-2 ${textColorClass}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Đóng menu" : "Mở menu"}
           aria-expanded={isMobileMenuOpen}
